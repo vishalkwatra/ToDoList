@@ -1,0 +1,55 @@
+.container{
+    align-content: center;
+    border-style: solid;
+    margin: 50px;
+}
+
+.container-header{
+    text-align: center;
+    color: blue;
+}
+
+.container-item{
+    text-align: left;
+    color:darkgrey;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+}
+
+.container-item h1{
+    text-align: center;
+    color: red;
+}
+
+.container-item input{
+    text-align: left;
+    color:darkgrey;
+    display: block;
+}
+
+.container-item select{
+    text-align: left;
+    color:darkgrey;
+    display: block;
+}
+
+.container-item #idAdd{
+    text-align: center;
+    font-size: 12px;
+    background-color: skyblue;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+}
+
+.container-item #idDelete{
+    text-align: center;
+    font-size: 12px;
+    background-color: orangered;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+}
+

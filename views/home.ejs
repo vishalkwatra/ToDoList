@@ -1,0 +1,95 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/home.css" type="text/css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-item">
+            <h1>
+                TODO App
+            </h1>
+        </div>
+        <form action="/add-task" method="POST">
+            <div class="container-item">
+                <label for="idDesc">DESCRIPTION</label>
+                <input id="idDesc" placeholder="What do you need to do?"></input>
+            </div>
+            <div class="container-item">
+                <label for="idCategory">CATEGORY</label>
+                <select name="category" id="idCategory">
+                    <option value="">Choose a category</option>
+                    <option value="work">Work</option>
+                    <option value="school">School</option>
+                    <option value="cleaning">Cleaning</option>
+                    <option value="other">Other</option>
+                </select>
+                <label for="idDate">Due Date</label>
+                <input id="idDate" type="date" placeholder="dd/mm/yyyy"></input>
+            </div>
+            <div class="container-item">
+                <Button id="idAdd" type="submit">ADD TASK</Button>
+                <Button id="idDelete" type="submit">DELETE TASKS</Button>
+            </div>
+        </form>
+
+
+        <% for(let i of tasks_list) { %>
+        <div class="container-item">
+            <li><%= i.desc %></li>
+        </div>
+        <div class="container-item">
+            <li><%= i.category %></li>
+        </div>
+        <div class="container-item">
+            <li><%= i.date %></li>
+        </div>
+        <% } %>
+    </div>
+    <!-- <div class="container">
+        <div class="container-item">
+            <h1>ToDo App</h1>
+        </div>
+            <form action="/add-task" method="POST">
+                <div class="container-item">
+                    <label for="idDesc">DESCRIPTION</label>
+                    <input id="idDesc" placeholder="What do you need to do?"></input>
+                </div>
+
+                <div class="container-item">
+                    <label for="idCategory">CATEGORY</label>
+                    <select name="category" id="idCategory">
+                        <option value="">Choose a category</option>
+                        <option value="work">Work</option>
+                        <option value="school">School</option>
+                        <option value="cleaning">Cleaning</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <label for="idDate">Due Date</label>
+                    <input id="idDate" type="date" placeholder="dd/mm/yyyy"></input>
+                </div>
+
+                <div>
+                    <Button type="submit">ADD TASK</Button>
+                    <Button type="submit">DELETE TASKS</Button>
+                </div>
+
+            </form>
+        
+        <div class="container-item">
+            <% for(let i of tasks_list) { %>
+            <li><%= i.desc %></li>
+            <li><%= i.category %></li>
+            <li><%= i.date %></li>
+            <% } %>
+        </div>
+    </div>     -->
+</body>
+
+</html>
