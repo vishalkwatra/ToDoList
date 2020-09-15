@@ -6,6 +6,7 @@
     <title>
         <%= title %>
     </title>
+    <script src="https://kit.fontawesome.com/2dff5b8076.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/home.css" type="text/css">
 </head>
 
@@ -16,12 +17,12 @@
                 TODO App
             </h1>
         </div>
-        <form action="/add-task" method="POST">
+        <form action="/tasks/add" method="POST">
             <div class="container-item">
                 <label for="idDesc">DESCRIPTION</label>
-                <input id="idDesc" placeholder="What do you need to do?"></input>
+                <input id="idDesc" placeholder="What do you need to do?" name="desc"></input>
             </div>
-            <div class="container-item">
+            <div class="container-item-inline">
                 <label for="idCategory">CATEGORY</label>
                 <select name="category" id="idCategory">
                     <option value="">Choose a category</option>
@@ -31,24 +32,21 @@
                     <option value="other">Other</option>
                 </select>
                 <label for="idDate">Due Date</label>
-                <input id="idDate" type="date" placeholder="dd/mm/yyyy"></input>
+                <input id="idDate" type="date" placeholder="dd/mm/yyyy" name="date"></input>
             </div>
             <div class="container-item">
-                <Button id="idAdd" type="submit">ADD TASK</Button>
-                <Button id="idDelete" type="submit">DELETE TASKS</Button>
+                <Button id="idAdd" type="submit"><i class="fas fa-plus"></i> ADD TASK</Button>
+                <Button id="idDelete" type="submit"><i class="fas fa-trash-alt"></i> DELETE TASKS</Button>
             </div>
         </form>
 
 
         <% for(let i of tasks_list) { %>
         <div class="container-item">
-            <li><%= i.desc %></li>
-        </div>
-        <div class="container-item">
-            <li><%= i.category %></li>
-        </div>
-        <div class="container-item">
-            <li><%= i.date %></li>
+            <input type="checkbox" id="listItem" name="listItem">
+            <label for="listItem"><%= i.desc %><%= i.category %></label><br>
+            <i class="fas fa-calendar-alt"><%= i.date %></i>
+
         </div>
         <% } %>
     </div>

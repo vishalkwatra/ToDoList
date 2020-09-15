@@ -5,7 +5,7 @@ var tasks_list = [
         date: new Date(2020, 09, 14)
     }
 ];
-
+module.exports.tasks_list = tasks_list;
 module.exports.home = function (req, res) {
     res.render('home',{
         title: "To Do List",
