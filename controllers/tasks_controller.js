@@ -10,5 +10,7 @@ module.exports.addTask = function (req, res) {
 }
 
 module.exports.deleteTask = function (req, res) {
+    console.log('In Delete Task');
+    console.log(req.body);
     return res.redirect('back');
 }

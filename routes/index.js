@@ -7,7 +7,4 @@ router.get('/', homeController.home);
 router.use(express.urlencoded({ extended: true }));
 router.use('/tasks', require('./tasks'));
 
-// const tasks_controller = require('../controllers/tasks_controller');
-// router.post('/tasks/add', tasks_controller.addTask);
-
 module.exports = router;

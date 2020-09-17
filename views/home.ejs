@@ -26,68 +26,78 @@
                 <label for="idCategory">CATEGORY</label>
                 <select name="category" id="idCategory">
                     <option value="">Choose a category</option>
-                    <option value="work">Work</option>
-                    <option value="school">School</option>
-                    <option value="cleaning">Cleaning</option>
-                    <option value="other">Other</option>
+                    <option value="Work">Work</option>
+                    <option value="School">School</option>
+                    <option value="Cleaning">Cleaning</option>
+                    <option value="Other">Other</option>
                 </select>
                 <label for="idDate">Due Date</label>
                 <input id="idDate" type="date" placeholder="dd/mm/yyyy" name="date"></input>
             </div>
             <div class="container-item">
                 <Button id="idAdd" type="submit"><i class="fas fa-plus"></i> ADD TASK</Button>
-                <Button id="idDelete" type="submit"><i class="fas fa-trash-alt"></i> DELETE TASKS</Button>
+                <Button id="idDelete" formaction="/tasks/delete"><i class="fas fa-trash-alt"></i> DELETE TASKS</Button>
             </div>
-        </form>
 
-
-        <% for(let i of tasks_list) { %>
-        <div class="container-item">
-            <input type="checkbox" id="listItem" name="listItem">
-            <label for="listItem"><%= i.desc %><%= i.category %></label><br>
-            <i class="fas fa-calendar-alt"><%= i.date %></i>
-
-        </div>
-        <% } %>
-    </div>
-    <!-- <div class="container">
-        <div class="container-item">
-            <h1>ToDo App</h1>
-        </div>
-            <form action="/add-task" method="POST">
-                <div class="container-item">
-                    <label for="idDesc">DESCRIPTION</label>
-                    <input id="idDesc" placeholder="What do you need to do?"></input>
-                </div>
-
-                <div class="container-item">
-                    <label for="idCategory">CATEGORY</label>
-                    <select name="category" id="idCategory">
-                        <option value="">Choose a category</option>
-                        <option value="work">Work</option>
-                        <option value="school">School</option>
-                        <option value="cleaning">Cleaning</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <label for="idDate">Due Date</label>
-                    <input id="idDate" type="date" placeholder="dd/mm/yyyy"></input>
-                </div>
-
-                <div>
-                    <Button type="submit">ADD TASK</Button>
-                    <Button type="submit">DELETE TASKS</Button>
-                </div>
-
-            </form>
-        
-        <div class="container-item">
             <% for(let i of tasks_list) { %>
-            <li><%= i.desc %></li>
-            <li><%= i.category %></li>
-            <li><%= i.date %></li>
+            <div class="container-item">
+                <div class="outer-div">
+                    <div class="inner-div1">
+                        <input type="checkbox" id="listItem" name="listItem" onchange="strikeout()"></input>
+                        <label class = "ListItem" for="listItem"><%= i.desc %></label>
+                        <br>
+                        <i class="fas fa-calendar-alt ListItem"><%= i.date %></i>
+                    </div>
+
+                    <div class="inner-div2">
+                        <button class="btnCategory"
+                            style="margin-left: 25%;margin-top: 5%;margin-bottom: 5%;margin-right: 15%;"><%= i.category %></button>
+                    </div>
+
+                </div>
+            </div>
             <% } %>
-        </div>
-    </div>     -->
+
+        </form>
+    </div>
+    <script>
+        var elements = document.getElementsByClassName("btnCategory");
+        for (let i of elements) {
+            switch (i.innerText) {
+                case "Work":
+                    i.style.backgroundColor = "skyblue";
+                    continue;
+                case "School":
+                    i.style.backgroundColor = "yellow";
+                    continue;
+                case "Cleaning":
+                    i.style.backgroundColor = "red";
+                    continue;
+                case "Other":
+                    i.style.backgroundColor = "orange";
+                    continue;
+                default:
+                    break;
+            }
+
+        }
+
+        function strikeout() {
+            var listItem = document.getElementsByClassName("ListItem");
+            var listItemchck = document.getElementById("listItem");
+            for (let i of listItem) {
+                if (listItemchck.checked) {
+                    i.style.textDecoration = "line-through";
+                } else{
+                    i.style.textDecoration = "";
+                }
+                    
+            }
+            
+        }
+
+
+    </script>
 </body>
 
 </html>
