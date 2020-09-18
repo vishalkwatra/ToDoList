@@ -36,17 +36,18 @@
             </div>
             <div class="container-item">
                 <Button id="idAdd" type="submit"><i class="fas fa-plus"></i> ADD TASK</Button>
-                <Button id="idDelete" formaction="/tasks/delete"><i class="fas fa-trash-alt"></i> DELETE TASKS</Button>
+                <Button id="idDelete" onclick="submit_delete()" formaction="/tasks/delete"><i class="fas fa-trash-alt"></i> DELETE TASKS</Button>
             </div>
-
             <% for(let i of tasks_list) { %>
             <div class="container-item">
                 <div class="outer-div">
                     <div class="inner-div1">
-                        <input type="checkbox" id="listItem" name="listItem" onchange="strikeout()"></input>
-                        <label class = "ListItem" for="listItem"><%= i.desc %></label>
+                        <input type="checkbox" name="chkbox" id="chkbox" onchange="strikeout()"
+                            style="display: inline">
+                        <label id="idLblchkbox" for="chkbox" name="chkboxLbl"><%= i.desc %></label>
                         <br>
                         <i class="fas fa-calendar-alt ListItem"><%= i.date %></i>
+                        <input id="desc" name="descr" style="visibility: hidden;" value="<%= i.desc %>"></input>
                     </div>
 
                     <div class="inner-div2">
@@ -57,8 +58,11 @@
                 </div>
             </div>
             <% } %>
-
         </form>
+
+
+
+
     </div>
     <script>
         var elements = document.getElementsByClassName("btnCategory");
@@ -83,17 +87,29 @@
         }
 
         function strikeout() {
-            var listItem = document.getElementsByClassName("ListItem");
-            var listItemchck = document.getElementById("listItem");
-            for (let i of listItem) {
-                if (listItemchck.checked) {
-                    i.style.textDecoration = "line-through";
-                } else{
-                    i.style.textDecoration = "";
-                }
-                    
+            if (event.srcElement.checked) {
+                event.srcElement.nextElementSibling.style.textDecoration = "line-through";    
+            } else {
+                event.srcElement.nextElementSibling.style.textDecoration = "";    
             }
             
+            //     for (let i of listItem) {
+            //         if (listItemchck.checked) {
+            //             i.style.textDecoration = "line-through";
+            //         } else {
+            //             i.style.textDecoration = "";
+            //         }
+
+        }
+
+        function submit_delete() {
+            var Lbls = document.getElementsByName("chkboxLbl");
+            for (let index = 0; index < Lbls.length; index++) {
+                let element = Lbls[index];
+                if (element.style.textDecoration != "line-through") {
+                    element.nextElementSibling.nextElementSibling.nextElementSibling.value = "" ;
+                }
+            }
         }
 
 
