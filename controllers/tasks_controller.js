@@ -39,21 +39,30 @@ module.exports.deleteTask = function (req, res) {
     // return res.redirect('back');
 
     console.log('In Delete Task');
-    console.log(req.body);
-    for (let index = 0; index < req.body.descr.length; index++) {
-        let desc = req.body.descr[index];
-        if (req.body.descr[index]) {
-            Task.deleteOne({ desc: req.body.descr[index] }, function (err) {
-                if (err) {
-                    console.log('Error in deleting the task from database');
-                    return;
-                }
 
-                return res.redirect('back');
-            })
+    if (Array.isArray(req.body.descr)) {
+        for (let index = 0; index < req.body.descr.length; index++) {
+            let desc = req.body.descr[index];
+            if (req.body.descr[index]) {
+                console.log(req.body.descr[index]);
+                Task.deleteOne({ desc: req.body.descr[index] }, function (err) {
+                    if (err) {
+                        console.log('Error in deleting the task from database');
+                        return;
+                    }
+
+
+                });
+            }
         }
-
+    } else {
+        Task.deleteOne({ desc: req.body.descr }, function (err) {
+            if (err) {
+                console.log('Error in deleting the task from database');
+                return;
+            }
+        });
     }
 
-
+    return res.redirect('back');
 }
